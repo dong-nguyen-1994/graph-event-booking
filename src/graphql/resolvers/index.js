@@ -1,5 +1,6 @@
 const Event = require('../../models/event');
 const User = require('../../models/user');
+const Booking = require('../../models/booking');
 
 module.exports = {
     events: () => {
@@ -8,6 +9,14 @@ module.exports = {
         }).catch( (err) => {
             console.log(err);
         });
+    },
+    bookings: async () => {
+        try {
+            const bookings = await Booking.find();
+            return bookings;
+        } catch (error) {
+            throw error;
+        }
     },
     createEvent: (args) => {
         const event = new Event({
